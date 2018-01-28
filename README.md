@@ -8,3 +8,8 @@
 * 6、[get-pixels-cv.py: ]()使用python进行像素级的操作，旋转、访问像素值、裁剪等操作
 * 7、[liver_roi: ]() 已知roi区域的二值图与原图，需要得到roi区域的像素值。
 * 8、[OpenRoi.m: ]() 原图，二值化、连通域提取、开操作，取得roi区域，重心、画框
+----
+> .mat的一个知识
+  如果要得到一个.mat文件，该文件内部包含多个值，如：mask、img等，可以采用将两个值分别载入matlab的工作空间，然后用：
+  save mydata mask img;
+  这样就将mask和img保存在了一个.mat文件内部，然后该文件的名字为：mydata.mat
