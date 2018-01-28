@@ -10,6 +10,6 @@
 * 8、[OpenRoi.m: ]() 原图，二值化、连通域提取、开操作，取得roi区域，重心、画框
 ----
 * .mat的一个知识
-  如果要得到一个.mat文件，该文件内部包含多个值，如：mask、img等，可以采用将两个值分别载入matlab的工作空间，然后用：
-  save mydata mask img;
-  这样就将mask和img保存在了一个.mat文件内部，然后该文件的名字为：mydata.mat
+   如果要得到一个.mat文件，该文件内部包含多个值，如：mask、img等，可以采用将两个值分别载入matlab的工作空间，然后用：
+   save mydata mask img;
+   这样就将mask和img保存在了一个.mat文件内部，然后该文件的名字为：mydata.mat
