@@ -6,3 +6,5 @@
 * 4、[picture_24_to_8_chanel.m： ](https://github.com/decouples/Matlab/blob/master/picture_24_to_8_chanel.m)将24位图像转化位8位图像
 * 5、[cut-image.py: ]()计算一个文件夹内所有的RGB图片的均值，会算出3个均值对应于3个通道
 * 6、[get-pixels-cv.py: ]()使用python进行像素级的操作，旋转、访问像素值、裁剪等操作
+* 7、[liver_roi: ]() 已知roi区域的二值图与原图，需要得到roi区域的像素值。
+* 8、[OpenRoi.m: ]() 原图，二值化、连通域提取、开操作，取得roi区域，重心、画框
