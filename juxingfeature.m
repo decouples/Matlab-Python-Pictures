@@ -1,13 +1,13 @@
 % 2018-03-03
-% ¶ÁÈ¡Í¼Æ¬²¢ÇÒ¶şÖµ»¯ËûÃÇ
-img = imread('0000.bmp');
+% è¯»å–å›¾ç‰‡å¹¶ä¸”äºŒå€¼åŒ–ä»–ä»¬
+img = imread('tangle.png');
 figure,imshow(img);
-img = im2bw(img);%£¨Í¼Ïñ·Ö¸î£©×ª»¯Îª¶şÖµÍ¼
-img = not(img);%°ÑÍ¼ÏñÏë±í´ïµÄÄÚÈİ±ä³É1
+img = im2bw(img);%ï¼ˆå›¾åƒåˆ†å‰²ï¼‰è½¬åŒ–ä¸ºäºŒå€¼å›¾
+img = not(img);%æŠŠå›¾åƒæƒ³è¡¨è¾¾çš„å†…å®¹å˜æˆ1
 figure,imshow(img);
 
 
-% Ê¹ÓÃbwboundariesº¯ÊıÏÔÊ¾Ä¿±êµÄ±ß½ç
+% ä½¿ç”¨bwboundarieså‡½æ•°æ˜¾ç¤ºç›®æ ‡çš„è¾¹ç•Œ
 [B,L] = bwboundaries(img);
 figure,imshow(img);
 hold on;
@@ -16,7 +16,7 @@ for k = 1:length(B)
     plot(boundary(:,2),boundary(:,1),'g','LineWidth',2);
 end
 
-%Ê¹ÓÃbwlabel±ê¼Ç²âÊÔÍ¼ÏñÖĞµÄÁ¬ĞøÇøÓò£¬Î±²ÊÉ«»¯ËûÃÇ£¬È»ºó½áºÏËûÃÇµÄ±êºÅÏÔÊ¾ËûÃÇ
+%ä½¿ç”¨bwlabelæ ‡è®°æµ‹è¯•å›¾åƒä¸­çš„è¿ç»­åŒºåŸŸï¼Œä¼ªå½©è‰²åŒ–ä»–ä»¬ï¼Œç„¶åç»“åˆä»–ä»¬çš„æ ‡å·æ˜¾ç¤ºä»–ä»¬
 [L,N] = bwlabel(img);
 img_rgb = label2rgb(L,'hsv',[.5 .5 .5],'shuffle');
 figure,imshow(img_rgb);hold on
@@ -26,20 +26,20 @@ for k =1:length(B)
     text(boundary(1,2)-11,boundary(1,1)+11,num2str(k),'Color','y','Fontsize',14,'FontWeight','bold');
 end
 
-%ÀûÓÃº¯Êıregionpropsº¯Êı¶ÔÍ¼ÏñÖĞµÄÃ¿¸öÄ¿±êÌáÈ¡ÏÂÃæµÄ¶øÖÁÌØÕ÷
-% Area£¨Ãæ»ı£©,Centroid£¨ÖØĞÄ£©,Eccentricity£¨Æ«ĞÄÂÊ£©,Perimeter£¨ÖÜ³¤£©
-stats = regionprops(L,'all');%Í³¼ÆµÄÊı±£ÁôÔÚstatsÄÚ
+%åˆ©ç”¨å‡½æ•°regionpropså‡½æ•°å¯¹å›¾åƒä¸­çš„æ¯ä¸ªç›®æ ‡æå–ä¸‹é¢çš„è€Œè‡³ç‰¹å¾
+% Areaï¼ˆé¢ç§¯ï¼‰,Centroidï¼ˆé‡å¿ƒï¼‰,Eccentricityï¼ˆåå¿ƒç‡ï¼‰,Perimeterï¼ˆå‘¨é•¿ï¼‰
+stats = regionprops(L,'all');%ç»Ÿè®¡çš„æ•°ä¿ç•™åœ¨statså†…
 temp = zeros(1,N);
 for k = 1:N
-    %¼ÆËãthinness ratio£¨Ï¸¶È±ÈÀı£©
+    %è®¡ç®—thinness ratioï¼ˆç»†åº¦æ¯”ä¾‹ï¼‰
     temp(k) = 4 * pi * stats(k,1).Area / (stats(k,1).Perimeter)^2;
     stats(k,1).ThinnessRatio = temp(k);
-    %¼ÆËãaspect ratio
+    %è®¡ç®—aspect ratio
     temp(k) = (stats(k,1).BoundingBox(3))/(stats(k,1).BoundingBox(4));
     stats(k,1).AspectRatio = temp(k);
 end
 
-% ÒÔÃæ»ıÓëÏ¸¶È±ÈÀıÎªÀı£¬»­³öÆäÊ¸Á¿Í¼£¬ÖÆ×÷·ÖÀàÆ÷
+% ä»¥é¢ç§¯ä¸ç»†åº¦æ¯”ä¾‹ä¸ºä¾‹ï¼Œç”»å‡ºå…¶çŸ¢é‡å›¾ï¼Œåˆ¶ä½œåˆ†ç±»å™¨
 areas = zeros(1,N);
 for k = 1:N
     areas(k) = stats(k).Area;
